@@ -6,10 +6,12 @@ namespace CarrollChains
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("\t\t\tДополнительное задание по ООП.\n" +
-                "Решение задачи \"Метаграмма\" для поиска оптимального пути цепочек Кэрролла");
-            Console.Write("Введите размер словаря:");
+            Console.WriteLine("\t\t\t\tДополнительное задание по ООП.\n" +
+                "\tРешение задачи \"Метаграмма\" для поиска оптимального пути цепочек Кэрролла\n" +
+                "\t\tВыполнил: студент гр.20ВП1 Кудашов Александр\n");
+            Console.Write("Введите размер словаря: ");
             int matrixSize = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите словарь (каждое новое слово на новой строке):\n");
             string[] dictionary = new string[matrixSize];
            
             // Считывание словаря
@@ -20,13 +22,10 @@ namespace CarrollChains
             }
 
             int[,] matrix = GetMatrix(dictionary, matrixSize);
-            PrintMatrix(matrix, matrixSize);
-
-
-
+            Console.WriteLine();
             ShortestPathFinder test = new(matrix, matrixSize);
             test.MatrixPrint();
-            test.Dijkstra(matrix, 0);
+            test.Dijkstra(dictionary);
         }
 
         /// <summary>
@@ -77,28 +76,10 @@ namespace CarrollChains
                         diffCount++;
                     }
                 }
-                    return diffCount == 1;
+                return diffCount == 1;
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Печать матрицы переходов
-        /// </summary>
-        /// <param name="matrix"></param>
-        /// <param name="matrixSize"></param>
-        static void PrintMatrix(int[,] matrix, int matrixSize)
-        {
-            Console.WriteLine("Вывод матрицы");
-            for (int i = 0; i < matrixSize; i++)
-            {
-                for (int j = 0; j < matrixSize; j++)
-                {
-                    Console.Write(matrix[i, j]);
-                }
-                Console.WriteLine();
-            }
         }
     }
 }
